@@ -2,70 +2,85 @@
 
 <html>
 
-<head>
+    <head>
 
-<title>Hello World #4</title>
+        <title>Hello World #4</title>
 
-<meta charset="utf-8" />
+        <meta charset="utf-8" />
 
-<meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="telephone=no" />
 
-<meta name="viewport" content="user-scalable=no, initial-scale=1,
+        <meta name="viewport" content="user-scalable=no, initial-scale=1,
 
-maximum-scale=1, minimum-scale=1, width=device-width,
+                                       maximum-scale=1, minimum-scale=1, width=device-width,
 
-height=device-height" />
+                                       height=device-height" />
 
-<script src="cordova.js"></script>
+        <link rel="stylesheet" href="css/index.css">
 
-<script>
+        <script src="cordova.js"></script>
 
-var br = "<br />";
+        <script>
 
-function onBodyLoad() {
+            var br = "<br />";
 
-alert("Приложение загружено");
+            function onBodyLoad() {
 
-document.addEventListener("deviceready", onDeviceReady, false);
+                alert("Приложение загружено");
 
-}
+                document.addEventListener("deviceready", onDeviceReady, false);
 
-function onDeviceReady() {
+            }
 
-navigator.notification.alert("Cordova загружена!");
+            function onDeviceReady() {
 
-console.log("Cordova: " + device.cordova);
+                navigator.notification.alert("Cordova загружена!");
 
-//Get the appInfo DOM element
+                console.log("Cordova: " + device.cordova);
 
-var element = document.getElementById('appInfo');
 
-//replace it with specific information about the device
+                var element = document.getElementById('appInfo');
 
-//running the application
+                element.innerHTML =
 
-element.innerHTML =
+                    'Cordova Version: ' + device.cordova + br +
 
-'Cordova Version: ' + device.cordova + br +
+                    'Platform: ' + device.platform + br +
 
-'Platform: ' + device.platform + br +
+                    'Model: ' + device.model + br +
 
-'Model: ' + device.model + br +
+                    'OS Version ' + device.version;
 
-'OS Version ' + device.version;
+            }
 
-}
 
-</script>
+            window.addEventListener("batterylow", onBatteryLow, false);
+            function onBatteryLow(info) {
+                alert("Battery Level Low " + info.level + "%");
+            }
 
-</head>
+        </script>
 
-<body onload="onBodyLoad()">
+    </head>
 
-<h1>Приложение</h1>
+    <body onload="onBodyLoad()">
 
-<p id="appInfo">Идет сбор данных</p>
+        <h1>Приложение</h1>
 
-</body>
+        <p id="appInfo">Идет сбор данных</p>
+
+        <ul id="nav">
+            <li>
+                <a href="javascript: void(0);">Выпадающий список</a>
+                <ul>
+                    <li><a href="page.html">Пункт 1</a></li>
+                    <li><a href="javascript: void(0);">Пункт 2</a></li>
+                    <li><a href="javascript: void(0);">Пункт 3</a></li>
+                    <li><a href="javascript: void(0);">Пункт 4</a></li>
+                </ul>
+            </li>
+        </ul>
+
+    </body>
 
 </html>

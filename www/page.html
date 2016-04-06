@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <title>Hello World #4</title>
+
+        <meta charset="utf-8" />
+
+        <meta name="format-detection" content="telephone=no" />
+
+        <meta name="viewport" content="user-scalable=no, initial-scale=1,
+
+                                       maximum-scale=1, minimum-scale=1, width=device-width,
+
+                                       height=device-height" />
+
+        <link rel="stylesheet" href="css/index.css">
+
+        <script src="cordova.js"></script>
+
+        <script>
+
+            var br = "<br />";
+
+            function onBodyLoad() {
+
+                alert("Приложение загружено");
+
+                document.addEventListener("deviceready", onDeviceReady, false);
+
+            }
+
+            function capturePhoto(){
+                navigator.camera.getPicture(uploadPhoto,null,{sourceType:1,quality:60});
+            }
+//            function uploadPhoto(data){
+//                cameraPic.src = "data:image/jpeg;base64," + data;
+//            }
+            function uploadPhoto(data){
+// this is where you would send the image file to server
+    cameraPic.src = "data:image/jpeg;base64," + data;
+    // Successful upload to the server
+    navigator.notification.alert(
+        'Ваше фото загружено',  // message
+        okay,                           // callback
+        'Фото загружено',              // title
+        'OK'                          // buttonName
+    );
+    // upload has failed Fail
+    /*
+    if (failedToUpload){
+    navigator.notification.alert(
+        'Your Photo has failed to upload',
+        failedDismissed,
+        'Photo Not Uploaded',
+        'OK'
+        );
+    }
+    */
+}
+function okay(){
+    // Do something
+}
+
+        </script>
+
+    </head>
+
+    <body onload="onBodyLoad()">
+
+        <h1>Приложение</h1>
+
+        <ul class="hList">
+            <li>
+                <a href="#click" class="menu">
+                    <h2 class="menu-title">animals</h2>
+                    <ul class="menu-dropdown">
+                        <li>cat</li>
+                        <li>dog</li>
+                        <li>horse</li>
+                        <li>cow</li>
+                        <li>pig</li>
+                    </ul>
+                </a>
+            </li>
+            <li>
+                <a href="#click" class="menu">
+                    <h2 class="menu-title menu-title_2nd">names</h2>
+                    <ul class="menu-dropdown">
+                        <li>Kevin</li>
+                        <li>Jim</li>
+                        <li>Andy</li>
+                    </ul>
+                </a>
+            </li>
+            <li>
+                <a href="#click" class="menu">
+                    <h2 class="menu-title menu-title_3rd">things</h2>
+                    <ul class="menu-dropdown">
+                        <li>bench</li>
+                        <li>pizza</li>
+                        <li>Honda CB125</li>
+                        <li>space</li>
+                        <li>black matter</li>
+                        <li>apple</li>
+                        <li>philodendron</li>
+                        <li>liver</li>
+                        <li>brass</li>
+                    </ul>
+                </a>
+            </li>
+            <li>
+                <a href="#click" class="menu">
+                    <h2 class="menu-title menu-title_4th">Movies</h2>
+                    <ul class="menu-dropdown">
+                        <li>Godzilla</li>
+                        <li>Man on Wire</li>
+                        <li>Spirited Away</li>
+                        <li>Interstellar</li>
+                    </ul>
+                </a>
+            </li>
+        </ul>  
+
+        <div id="camera">
+            <button class="camera-control" onclick="capturePhoto();">Сделать фото</button>
+            <div style="text-align:center;margin:20px;">
+                <img id="cameraPic" src="" style="width:auto;height:120px;">
+            </div>
+        </div>
+
+    </body>
+
+</html>
